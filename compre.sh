@@ -15,33 +15,38 @@ trap 'rm -r "$d"' EXIT
 
 # uuencode stuff {{{
 
+typeset uu_buf=""
 typeset -a uu_table=(
  " " \! \" \# \$ %  \& \' \( \) \* +  \, -  .  /
   0  1  2  3  4  5  6  7  8  9  :  \; \< \= \> \?
   @  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O
   P  Q  R  S  T  U  V  W  X  Y  Z  \[ \\ \] \^ _)
-typeset uu_buf=""
 
 uu_begin() {
   echo "begin 644 ${1:?}.Z"
 }
 
-# 0: add in>>2, emit.  save (in & 3) << 4 -- 2 bits pending
-#    000000 00
-# 1: add in>>4, emit.  save (in & 15) << 2 -- 4 bits pending, b_0 complete
-#    000000 001111 1111
-# 2: add in>>6, emit.  emit (in & 63) -- b_1 and b_2 complete
-#    000000 001111 111122 222222
+# 0: read 00000000
+#    hold 000000.00
+# 1: read 11111111
+#    emit 000000
+#    emit 001111
+#    hold 1111
+# 2: read 22222222
+#    emit 111122
+#    emit 222222
 
 typeset -i uu_state=0
 typeset -i uu_carry=0
+
 uu_encode8() {
+  # uuencode once a byte is completely representable.  1,->2->4
   while (( $# )); do
     typeset -i in="${1:?}"
     case $uu_state in
-    0)  uu_buf+="${uu_table[in >> 2]}"
-        : $(( uu_carry = (in & 3) << 4 )) ;;
-    1)  uu_buf+="${uu_table[uu_carry | (in >> 4)]}"
+    0)  : $(( uu_carry = in )) ;;
+    1)  uu_buf+="${uu_table[uu_carry >> 2]}"
+        uu_buf+="${uu_table["((uu_carry & 3) << 4) | (in >> 4)"]}"
         : $(( uu_carry = (in & 15) << 2 )) ;;
     2)  uu_buf+="${uu_table[uu_carry | (in >> 6)]}"
         uu_buf+="${uu_table[in & 63]}"
@@ -55,35 +60,25 @@ uu_line() {
   typeset -i len="${1:-}"
   [[ ${#uu_buf} -eq 0 ]] && return 1                        # empty buf
   [[ $len -gt 0 && ${#uu_buf} -lt $len ]] && return 1       # unfulfillable
-  if (( len > 0 )); then
+  (( len > 0 )) && {
     echo "${uu_table[len / 4 * 3]}${uu_buf:0:len}"
     uu_buf="${uu_buf:len}"
-  else
-    len=${#uu_buf}
-    while (( ${#uu_buf} % 4 )); do uu_buf+='`'; done        # pad buf
-    echo "len=$len #uu_buf=${#uu_buf} uu_state=$uu_state z=$z" >&2 # XXX
-    typeset -i x='((len + 3) / 4 * 3) - ((3 - uu_state) % 3)'
-    echo "${uu_table[x]}${uu_buf}"
-    uu_buf=""
-  fi
-  return 0
+  }
 }
 
 uu_end() {
-  # full lines
+  # full lines, if we can
   while uu_line 60; do :; done
 
-  # commit carry, but preserve state
-  if (( uu_state != 0 )); then
-    typeset -i uu_state_save=$uu_state
-    uu_encode8 0
-    uu_state=$uu_state_save
-  fi
+  # commit any remaining bits, emit final line
+  typeset -i len=${#uu_buf} x="${#uu_buf} / 4 * 3"
+  uu_encode8 0
+  (( len != ${#uu_buf} && ++x && ${#uu_buf} % 4 == 2 )) && uu_buf+='``'
 
-  # final partial line
-  uu_line || true
+  echo "${uu_table[x]}${uu_buf}"
+  uu_buf=""
 
-  # uuencode outro
+  # uuencode epilogue
   echo '`'
   echo 'end'
 }
@@ -91,8 +86,8 @@ uu_end() {
 # }}}
 
 typeset -i COMPRESH_BITS="${COMPRESH_BITS:-12}"
-(( COMPRESH_BITS > 9 && COMPRESH_BITS <= 16 )) || {
-  echo "$0: COMPRESH_BITS range must in [10,16]" >&2; exit 1; }
+(( COMPRESH_BITS >= 9 && COMPRESH_BITS <= 16 )) || {
+  echo "$0: COMPRESH_BITS range must in [9,16]" >&2; exit 1; }
 typeset -i maxe='1 << COMPRESH_BITS'
 
 # init uu
@@ -138,6 +133,7 @@ while read addr line; do
       uu_encode8 $(( y & 255 ))
       : $(( y >>= 8, z -= 8 ))
     done
+
   done
 
   # unbuffer pending lines
