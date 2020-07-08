@@ -23,5 +23,5 @@ for f in corpus/*; do
           [ "$d" = "$td" ] || { echo "failed ($d vs $td)"; exit 1; }
           rm "f=$(basename $f)_b=$b.out" }
       echo "\tOK!"
-    done }
+    done; }
 done
