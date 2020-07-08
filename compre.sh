@@ -11,7 +11,7 @@ set -eu
 
 fi="${1:?"Usage: $0 filename"}"
 d="$(mktemp -d)" || exit 1
-trap 'rm -r "$d"' EXIT
+trap 'rm -r -- "$d" &' EXIT
 
 # uuencode stuff {{{
 
