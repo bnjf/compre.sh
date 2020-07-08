@@ -21,49 +21,35 @@ typeset -a uu_table=(
   0  1  2  3  4  5  6  7  8  9  :  \; \< \= \> \?
   @  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O
   P  Q  R  S  T  U  V  W  X  Y  Z  \[ \\ \] \^ _)
-
-uu_begin() {
-  echo "begin 644 ${1:?}.Z"
-}
-
-# 0: read 00000000
-#    hold 000000.00
-# 1: read 11111111
-#    emit 000000
-#    emit 001111
-#    hold 1111
-# 2: read 22222222
-#    emit 111122
-#    emit 222222
-
 typeset -i uu_state=0
 typeset -i uu_carry=0
 
-uu_encode8() {
-  # uuencode once a byte is completely representable.  1,->2->4
+uu_begin() {
+  # uuencode prologue
+  echo "begin 644 ${1:?}.Z"
+}
+
+uu_encodeb() {
   while (( $# )); do
     typeset -i in="${1:?}"
     case $uu_state in
-    0)  : $(( uu_carry = in )) ;;
+    0)  : $(( uu_carry = in, uu_state = 1 )) ;;
     1)  uu_buf+="${uu_table[uu_carry >> 2]}"
-        uu_buf+="${uu_table["((uu_carry & 3) << 4) | (in >> 4)"]}"
-        : $(( uu_carry = (in & 15) << 2 )) ;;
+        uu_buf+="${uu_table[((uu_carry & 3) << 4) | (in >> 4)]}"
+        : $(( uu_carry = (in & 15) << 2, uu_state = 2 )) ;;
     2)  uu_buf+="${uu_table[uu_carry | (in >> 6)]}"
         uu_buf+="${uu_table[in & 63]}"
+        : $(( uu_state = 0 ))
     esac
-    : $(( uu_state = (uu_state + 1) % 3 ))
     shift
   done
 }
 
 uu_line() {
-  typeset -i len="${1:-}"
-  [[ ${#uu_buf} -eq 0 ]] && return 1                        # empty buf
-  [[ $len -gt 0 && ${#uu_buf} -lt $len ]] && return 1       # unfulfillable
-  (( len > 0 )) && {
-    echo "${uu_table[len / 4 * 3]}${uu_buf:0:len}"
-    uu_buf="${uu_buf:len}"
-  }
+  typeset -i len="$1"
+  (( len == 0 || len % 4 || len > ${#uu_buf} )) && return 1
+  echo "${uu_table[len / 4 * 3]}${uu_buf:0:len}"
+  uu_buf="${uu_buf:len}"
 }
 
 uu_end() {
@@ -71,12 +57,14 @@ uu_end() {
   while uu_line 60; do :; done
 
   # commit any remaining bits, emit final line
-  typeset -i len=${#uu_buf} x="${#uu_buf} / 4 * 3"
-  uu_encode8 0
-  (( len != ${#uu_buf} && ++x && ${#uu_buf} % 4 == 2 )) && uu_buf+='``'
-
-  echo "${uu_table[x]}${uu_buf}"
-  uu_buf=""
+  typeset -i len=${#uu_buf}
+  uu_encodeb 0
+  typeset -i x="(len / 4) + (len % 2) + (${#uu_buf} / 2)"
+  if (( x > 0 )); then
+    (( ${#uu_buf} % 4 == 0 )) || uu_buf+='``'
+    echo "${uu_table[x]}${uu_buf}"
+    uu_buf=""
+  fi
 
   # uuencode epilogue
   echo '`'
@@ -92,7 +80,7 @@ typeset -i maxe='1 << COMPRESH_BITS'
 
 # init uu
 uu_begin "${fi##*/}"
-uu_encode8 0x1f 0x9d $(( 0x80 | COMPRESH_BITS ))
+uu_encodeb 0x1f 0x9d $(( 0x80 | COMPRESH_BITS ))
 
 # init lz.  lzw has a predefined dict with all bytes, compress(1)
 # reserves 257 for `clear`.
@@ -130,7 +118,7 @@ while read addr line; do
 
     # queue any bytes
     while (( z >= 8 )); do
-      uu_encode8 $(( y & 255 ))
+      uu_encodeb $(( y & 255 ))
       : $(( y >>= 8, z -= 8 ))
     done
 
@@ -143,8 +131,8 @@ done < <(od -bv)
 # finalize lz
 [[ -f e ]] || { echo "$0: i'm lost" >&2; exit 1; }
 : $(( y |= ($(<e) << z), z += w ))
-while (( z > 0 )); do
-  uu_encode8 $(( y & 255 ))
+while (( z >= 0 )); do
+  uu_encodeb $(( y & 255 ))
   : $(( y >>= 8, z -= 8 ))
 done
 
