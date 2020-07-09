@@ -1,0 +1,336 @@
+testing f=corpus/bib b=9
+ 104KiB 0:00:06 [15.8KiB/s]
+        OK!
+testing f=corpus/bib b=10
+87.8KiB 0:00:06 [13.2KiB/s]
+        OK!
+testing f=corpus/bib b=11
+78.1KiB 0:00:07 [10.4KiB/s]
+        OK!
+testing f=corpus/bib b=12
+72.0KiB 0:00:09 [7.64KiB/s]
+        OK!
+testing f=corpus/bib b=13
+66.2KiB 0:01:11 [ 953 B/s]
+        OK!
+testing f=corpus/bib b=14
+63.0KiB 0:02:00 [ 536 B/s]
+        OK!
+testing f=corpus/bib b=15
+62.6KiB 0:02:37 [ 406 B/s]
+        OK!
+testing f=corpus/bib b=16
+62.6KiB 0:02:07 [ 504 B/s]
+        OK!
+testing f=corpus/book1 b=9
+ 732KiB 0:03:34 [3.41KiB/s]
+        OK!
+testing f=corpus/book1 b=10
+ 619KiB 0:03:18 [3.12KiB/s]
+        OK!
+testing f=corpus/book1 b=11
+ 567KiB 0:03:11 [2.95KiB/s]
+        OK!
+testing f=corpus/book1 b=12
+ 525KiB 0:03:16 [2.67KiB/s]
+        OK!
+testing f=corpus/book1 b=13
+ 499KiB 0:03:33 [2.34KiB/s]
+        OK!
+testing f=corpus/book1 b=14
+ 466KiB 0:04:17 [1.81KiB/s]
+        OK!
+testing f=corpus/book1 b=15
+ 444KiB 0:06:10 [1.20KiB/s]
+        OK!
+testing f=corpus/book1 b=16
+ 426KiB 0:32:17 [ 225 B/s]
+        OK!
+testing f=corpus/book2 b=9
+ 590KiB 0:00:49 [11.8KiB/s]
+        OK!
+testing f=corpus/book2 b=10
+ 518KiB 0:02:43 [3.16KiB/s]
+        OK!
+testing f=corpus/book2 b=11
+ 490KiB 0:02:40 [3.05KiB/s]
+        OK!
+testing f=corpus/book2 b=12
+ 465KiB 0:02:46 [2.80KiB/s]
+        OK!
+testing f=corpus/book2 b=13
+ 426KiB 0:03:04 [2.32KiB/s]
+        OK!
+testing f=corpus/book2 b=14
+ 392KiB 0:02:42 [2.42KiB/s]
+        OK!
+testing f=corpus/book2 b=15
+ 358KiB 0:02:45 [2.17KiB/s]
+        OK!
+testing f=corpus/book2 b=16
+ 333KiB 0:22:04 [ 257 B/s]
+        OK!
+testing f=corpus/geo b=9
+ 113KiB 0:00:07 [15.4KiB/s]
+        OK!
+testing f=corpus/geo b=10
+ 107KiB 0:00:06 [15.7KiB/s]
+        OK!
+testing f=corpus/geo b=11
+ 112KiB 0:00:08 [13.7KiB/s]
+        OK!
+testing f=corpus/geo b=12
+ 105KiB 0:00:12 [8.66KiB/s]
+        OK!
+testing f=corpus/geo b=13
+ 106KiB 0:01:14 [1.42KiB/s]
+        OK!
+testing f=corpus/geo b=14
+ 104KiB 0:01:44 [1021 B/s]
+        OK!
+testing f=corpus/geo b=15
+ 103KiB 0:02:52 [ 613 B/s]
+        OK!
+testing f=corpus/geo b=16
+ 104KiB 0:02:11 [ 814 B/s]
+        OK!
+testing f=corpus/news b=9
+ 414KiB 0:01:27 [4.72KiB/s]
+        OK!
+testing f=corpus/news b=10
+ 364KiB 0:01:50 [3.30KiB/s]
+        OK!
+testing f=corpus/news b=11
+ 339KiB 0:01:48 [3.12KiB/s]
+        OK!
+testing f=corpus/news b=12
+ 312KiB 0:01:55 [2.70KiB/s]
+        OK!
+testing f=corpus/news b=13
+ 294KiB 0:02:16 [2.16KiB/s]
+        OK!
+testing f=corpus/news b=14
+ 268KiB 0:03:00 [1.49KiB/s]
+        OK!
+testing f=corpus/news b=15
+ 253KiB 0:04:07 [1.03KiB/s]
+        OK!
+testing f=corpus/news b=16
+ 240KiB 0:15:38 [ 262 B/s]
+        OK!
+testing f=corpus/obj1 b=9
+23.8KiB 0:00:02 [9.45KiB/s]
+        OK!
+testing f=corpus/obj1 b=10
+22.8KiB 0:00:02 [9.78KiB/s]
+        OK!
+testing f=corpus/obj1 b=11
+22.2KiB 0:00:03 [6.19KiB/s]
+        OK!
+testing f=corpus/obj1 b=12
+22.3KiB 0:00:05 [3.73KiB/s]
+        OK!
+testing f=corpus/obj1 b=13
+19.8KiB 0:00:10 [1.82KiB/s]
+        OK!
+testing f=corpus/obj1 b=14
+18.9KiB 0:00:21 [ 901 B/s]
+        OK!
+testing f=corpus/obj1 b=15
+18.9KiB 0:00:58 [ 332 B/s]
+        OK!
+testing f=corpus/obj1 b=16
+18.9KiB 0:00:58 [ 329 B/s]
+        OK!
+testing f=corpus/obj2 b=9
+ 339KiB 0:01:26 [3.94KiB/s]
+        OK!
+testing f=corpus/obj2 b=10
+ 370KiB 0:01:31 [4.02KiB/s]
+        OK!
+testing f=corpus/obj2 b=11
+ 402KiB 0:01:39 [4.04KiB/s]
+        OK!
+testing f=corpus/obj2 b=12
+ 406KiB 0:01:50 [3.69KiB/s]
+        OK!
+testing f=corpus/obj2 b=13
+ 335KiB 0:02:02 [2.74KiB/s]
+        OK!
+testing f=corpus/obj2 b=14
+ 278KiB 0:02:27 [1.88KiB/s]
+        OK!
+testing f=corpus/obj2 b=15
+ 197KiB 0:03:59 [ 842 B/s]
+        OK!
+testing f=corpus/obj2 b=16
+ 173KiB 0:09:00 [ 327 B/s]
+        OK!
+testing f=corpus/paper1 b=9
+62.2KiB 0:00:04 [13.4KiB/s]
+        OK!
+testing f=corpus/paper1 b=10
+49.9KiB 0:00:03 [12.7KiB/s]
+        OK!
+testing f=corpus/paper1 b=11
+44.2KiB 0:00:05 [8.80KiB/s]
+        OK!
+testing f=corpus/paper1 b=12
+41.5KiB 0:00:07 [5.64KiB/s]
+        OK!
+testing f=corpus/paper1 b=13
+36.5KiB 0:00:12 [2.86KiB/s]
+        OK!
+testing f=corpus/paper1 b=14
+33.8KiB 0:01:38 [ 352 B/s]
+        OK!
+testing f=corpus/paper1 b=15
+33.8KiB 0:01:36 [ 358 B/s]
+        OK!
+testing f=corpus/paper1 b=16
+33.8KiB 0:01:39 [ 345 B/s]
+        OK!
+testing f=corpus/paper2 b=9
+93.7KiB 0:00:24 [3.75KiB/s]
+        OK!
+testing f=corpus/paper2 b=10
+67.2KiB 0:00:26 [2.53KiB/s]
+        OK!
+testing f=corpus/paper2 b=11
+59.8KiB 0:00:30 [1.96KiB/s]
+        OK!
+testing f=corpus/paper2 b=12
+55.6KiB 0:00:41 [1.33KiB/s]
+        OK!
+testing f=corpus/paper2 b=13
+51.7KiB 0:01:04 [ 820 B/s]
+        OK!
+testing f=corpus/paper2 b=14
+49.4KiB 0:01:48 [ 464 B/s]
+        OK!
+testing f=corpus/paper2 b=15
+48.7KiB 0:02:21 [ 351 B/s]
+        OK!
+testing f=corpus/paper2 b=16
+48.7KiB 0:02:09 [ 384 B/s]
+        OK!
+testing f=corpus/pic b=9
+ 127KiB 0:01:26 [1.46KiB/s]
+        OK!
+testing f=corpus/pic b=10
+ 104KiB 0:01:27 [1.19KiB/s]
+        OK!
+testing f=corpus/pic b=11
+98.0KiB 0:01:31 [1.07KiB/s]
+        OK!
+testing f=corpus/pic b=12
+94.0KiB 0:01:43 [ 930 B/s]
+        OK!
+testing f=corpus/pic b=13
+87.8KiB 0:02:05 [ 715 B/s]
+        OK!
+testing f=corpus/pic b=14
+85.9KiB 0:02:53 [ 506 B/s]
+        OK!
+testing f=corpus/pic b=15
+83.5KiB 0:04:10 [ 341 B/s]
+        OK!
+testing f=corpus/pic b=16
+83.7KiB 0:04:03 [ 351 B/s]
+        OK!
+testing f=corpus/progc b=9
+42.4KiB 0:00:11 [3.55KiB/s]
+        OK!
+testing f=corpus/progc b=10
+39.6KiB 0:00:17 [2.33KiB/s]
+        OK!
+testing f=corpus/progc b=11
+35.0KiB 0:00:21 [1.62KiB/s]
+        OK!
+testing f=corpus/progc b=12
+32.5KiB 0:00:33 [1000 B/s]
+        OK!
+testing f=corpus/progc b=13
+26.8KiB 0:00:56 [ 484 B/s]
+        OK!
+testing f=corpus/progc b=14
+25.8KiB 0:01:18 [ 336 B/s]
+        OK!
+testing f=corpus/progc b=15
+25.8KiB 0:01:19 [ 333 B/s]
+        OK!
+testing f=corpus/progc b=16
+25.8KiB 0:01:19 [ 332 B/s]
+        OK!
+testing f=corpus/progl b=9
+66.2KiB 0:00:22 [2.91KiB/s]
+        OK!
+testing f=corpus/progl b=10
+56.6KiB 0:00:23 [2.41KiB/s]
+        OK!
+testing f=corpus/progl b=11
+51.3KiB 0:00:28 [1.80KiB/s]
+        OK!
+testing f=corpus/progl b=12
+46.5KiB 0:00:39 [1.17KiB/s]
+        OK!
+testing f=corpus/progl b=13
+42.7KiB 0:01:02 [ 699 B/s]
+        OK!
+testing f=corpus/progl b=14
+36.5KiB 0:01:49 [ 340 B/s]
+        OK!
+testing f=corpus/progl b=15
+36.6KiB 0:01:49 [ 340 B/s]
+        OK!
+testing f=corpus/progl b=16
+36.6KiB 0:01:50 [ 340 B/s]
+        OK!
+testing f=corpus/progp b=9
+57.6KiB 0:00:16 [3.45KiB/s]
+        OK!
+testing f=corpus/progp b=10
+44.1KiB 0:00:18 [2.38KiB/s]
+        OK!
+testing f=corpus/progp b=11
+36.5KiB 0:00:22 [1.59KiB/s]
+        OK!
+testing f=corpus/progp b=12
+30.9KiB 0:00:34 [ 929 B/s]
+        OK!
+testing f=corpus/progp b=13
+27.0KiB 0:00:57 [ 482 B/s]
+        OK!
+testing f=corpus/progp b=14
+25.9KiB 0:01:20 [ 328 B/s]
+        OK!
+testing f=corpus/progp b=15
+25.9KiB 0:01:20 [ 329 B/s]
+        OK!
+testing f=corpus/progp b=16
+25.9KiB 0:01:19 [ 332 B/s]
+        OK!
+testing f=corpus/trans b=9
+ 115KiB 0:00:32 [3.50KiB/s]
+        OK!
+testing f=corpus/trans b=10
+ 111KiB 0:00:34 [3.26KiB/s]
+        OK!
+testing f=corpus/trans b=11
+81.5KiB 0:00:35 [2.32KiB/s]
+        OK!
+testing f=corpus/trans b=12
+67.6KiB 0:00:44 [1.51KiB/s]
+        OK!
+testing f=corpus/trans b=13
+59.6KiB 0:01:06 [ 911 B/s]
+        OK!
+testing f=corpus/trans b=14
+53.8KiB 0:01:54 [ 480 B/s]
+        OK!
+testing f=corpus/trans b=15
+51.5KiB 0:02:31 [ 349 B/s]
+        OK!
+testing f=corpus/trans b=16
+51.5KiB 0:02:28 [ 355 B/s]
+        OK!
