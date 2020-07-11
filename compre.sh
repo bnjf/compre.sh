@@ -83,7 +83,7 @@ uu_begin "${fi##*/}"
 uu_encodeb 0x1f 0x9d $(( 0x80 | COMPRESH_BITS ))
 
 # init lz.  lzw has a predefined dict with all bytes, compress(1)
-# reserves 257 for `clear`.
+# reserves 256 for `clear`.
 cd "$d"
 typeset -i e=-1
 while (( ++e < 257 )); do
